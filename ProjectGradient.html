@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+                                <!-- CSS CODE 📗📗📗 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: linear-gradient(135deg, rgb(4, 106, 119), rgb(12, 88, 5));
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            transition: background-image 0.5s ease;
+            overflow: hidden;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 3rem;
+            text-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            width: 110px;
+            height: 50px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(31, 38, 135, 0.35),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(31, 38, 135, 0.2),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        #myBtn {
+            background: linear-gradient(135deg, rgba(92, 145, 229, 0.3), rgba(92, 145, 229, 0.1));
+        }
+
+        #myBtn2 {
+            background: linear-gradient(135deg, rgba(152, 63, 198, 0.3), rgba(152, 63, 198, 0.1));
+        }
+
+        h3 {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .copycode {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: #ffffff;
+            line-height: 1.6;
+            border-radius: 20px;
+            padding: 24px 28px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60px;
+        }
+
+        .copycode:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .copy-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .copy-icon:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .copy-icon:active {
+            transform: scale(0.95);
+        }
+
+        .toast {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(113, 116, 113, 0.5);
+            border-radius: 15px;
+            padding: 16px 28px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            animation: toastSlideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast i {
+            color: rgb(7, 40, 8);
+            font-size: 1.2rem;
+        }
+
+        @keyframes toastSlideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes toastSlideUp {
+            from {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+        }
+
+        .toast.hide {
+            animation: toastSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .box{
+            border: #ffffff 2px solid;
+            width: 800px;
+            max-width: 100%;
+            min-height: 400px;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+        /* Responsiveness  😍  */
+@media (max-width: 1024px) {
+    .box {
+        width: 90%;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    section {
+        gap: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    div {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .btn {
+        width: 160px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
+
+    .copycode {
+        width: 100%;
+        max-width: 320px;
+        font-size: 0.85rem;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 0.85rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .copycode {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .toast {
+        width: 90%;
+        text-align: center;
+        padding: 14px 18px;
+    }
+}
+
+    </style>
+</head>
+
+                                <!-- HTML CODE 📙📙📙  -->
+
+<body>
+    <div class="box">
+    <section>
+        <h1>Gradient Generator</h1>
+        <div>
+            <button id="myBtn" class="btn">#046A77</button>
+            <button id="myBtn2" class="btn">#0C5805</button>
+        </div>
+        <h3>Copy your code here</h3>
+        <div class="copycode">
+            <span>background-image: linear-gradient(135deg, rgb(4, 106, 119), rgb(12, 88, 5))</span>
+            <i class="fas fa-copy copy-icon"></i>
+        </div>
+    </section>
+    </div>
+    
+                                <!-- JAVASCRIPT CODE 📘📘📘 -->
+    <script>
+        let btn1 = document.getElementById("myBtn");
+        let btn2 = document.getElementById("myBtn2");
+        let copyDiv = document.querySelector(".copycode");
+        let rgb1 = "#046A77";
+        let rgb2 = "#0C5805";
+        // common code for both buttons 🍃🍃🍃 
+        const hexValues = () => {
+        let myHexValues = "0123456789abcdef";
+        let colors = "#";
+        for(let i=0 ; i<6 ; i++){
+        colors = colors + myHexValues[Math.floor(Math.random() *16)];
+        
+         }
+         return colors;
+        };
+        //Button 1
+        const handleButton1 = () => {
+           rgb1 = hexValues();
+            console.log(rgb1);
+            btn1.innerText = rgb1;
+           document.body.style.backgroundImage = `linear-gradient(135deg, ${rgb1}, ${rgb2})`;
+           copyDiv.querySelector("span").innerText = `background-image : linear-gradient(135deg, ${rgb1}, ${rgb2})`;
+        };
+        // Buttton 2
+          handleButton2 = () => {
+            const rgb2 = hexValues();
+            console.log(rgb2);
+            btn2.innerText = rgb2;
+            document.body.style.backgroundImage = `linear-gradient(135deg, ${rgb1}, ${rgb2})`;
+           copyDiv.querySelector("span").innerText = `background-image : linear-gradient(135deg, ${rgb1}, ${rgb2})`;
+        };
+
+         
+        btn1.addEventListener("click",handleButton1);
+        btn2.addEventListener("click",handleButton2);
+        
+        const copyIcon = document.querySelector(".copy-icon");
+        
+        const showToast = () => {
+            const existingToast = document.querySelector(".toast");
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.innerHTML = '<i class="fas fa-check-circle"></i><span>Code copied to clipboard!</span>';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add("hide");
+                setTimeout(() => toast.remove(), 400);
+            }, 2000);
+        };
+        
+        copyIcon.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const codeText = copyDiv.querySelector("span").innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                showToast();
+            });
+        });
+        
+        copyDiv.addEventListener("click",() => {
+            const codeText = copyDiv.querySelector("span").innerText;
+            navigator.clipboard.writeText(codeText);
+            showToast();
+        });
+       
+    </script>
+</body>
+</html>
